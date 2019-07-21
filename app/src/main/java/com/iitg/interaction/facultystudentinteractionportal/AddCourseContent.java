@@ -167,10 +167,6 @@ public class AddCourseContent extends AppCompatActivity {
                         else{
                             dialogView.findViewById(R.id.id7).setVisibility((View.GONE));
                         }
-
-
-
-
                     }
 
                     @Override
@@ -294,7 +290,7 @@ public class AddCourseContent extends AppCompatActivity {
                             InDatabaseSlotsText+=spinner1.getSelectedItem().toString() + "-" +  spinner3.getSelectedItem().toString() + "-" +  spinner2.getSelectedItem().toString() + ",";
 
                         }
-                        if(days[0]>1 || days[1]>1 || days[2]>1 || days[3]>1 || days[4]>1){Toast.makeText(AddCourseContent.this,"You can't select two classes on same day.", Toast.LENGTH_LONG).show();textView.setText("");;InDatabaseSlotsText=",";}
+                        if(days[0]>1 || days[1]>1 || days[2]>1 || days[3]>1 || days[4]>1){Toast.makeText(AddCourseContent.this,"You can't select two classes on same day.", Toast.LENGTH_LONG).show();textView.setText("");InDatabaseSlotsText=",";}
 
                         b.dismiss();
                     }
@@ -330,8 +326,6 @@ public class AddCourseContent extends AppCompatActivity {
                         myCalendar.set(Calendar.YEAR, year);
                         myCalendar.set(Calendar.MONTH, monthOfYear);
                         myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//                myCalendar.set(Calendar.HOUR,hour);
-//                myCalendar.set(Calendar.MINUTE,minutes);
                         String myFormat = "dd/MM/yyyy"; //In which you need put here
                         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                         date_of_exam.setText(sdf.format(myCalendar.getTime()));
@@ -348,7 +342,6 @@ public class AddCourseContent extends AppCompatActivity {
                         new DatePickerDialog(AddCourseContent.this, date, myCalendar
                                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                                 myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-//                new DatePickerDialog(getActivity(),myCalendar.get(Calendar.DAY_OF_WEEK));
                     }
                 });
 
@@ -361,7 +354,6 @@ public class AddCourseContent extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-//                Calendar mcurrentTime = Calendar.getInstance();
                         int hour = myCalendar.get(Calendar.HOUR_OF_DAY);
                         int minute = myCalendar.get(Calendar.MINUTE);
                         TimePickerDialog mTimePicker;
@@ -370,8 +362,7 @@ public class AddCourseContent extends AppCompatActivity {
                             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                                 time_of_exam.setText( selectedHour + ":" + selectedMinute);
                             }
-                        }, hour, minute, true);//Yes 24 hour time
-//                mTimePicker.setTitle("Select Time");
+                        }, hour, minute, true);
                         mTimePicker.show();
 
                     }
@@ -399,8 +390,6 @@ public class AddCourseContent extends AppCompatActivity {
                         else {
                             databaseReference = FirebaseDatabase.getInstance().getReference();
                              midsemester = new Midsemester(date,duration,time,description,venue);
-//                            String key=databaseReference.child("Courses").child(courseid).child("MidSemester").push().getKey();
-//                            databaseReference.child("Courses").child(courseid).child("MidSemester").setValue(midsemester);
                             midSem_btn.setText("Mid Semester added");
                             b.dismiss();
                         }
@@ -439,8 +428,6 @@ public class AddCourseContent extends AppCompatActivity {
                         myCalendar.set(Calendar.YEAR, year);
                         myCalendar.set(Calendar.MONTH, monthOfYear);
                         myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//                myCalendar.set(Calendar.HOUR,hour);
-//                myCalendar.set(Calendar.MINUTE,minutes);
                         String myFormat = "dd/MM/yyyy"; //In which you need put here
                         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                         date_of_exam.setText(sdf.format(myCalendar.getTime()));
@@ -457,7 +444,6 @@ public class AddCourseContent extends AppCompatActivity {
                         new DatePickerDialog(AddCourseContent.this, date, myCalendar
                                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                                 myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-//                new DatePickerDialog(getActivity(),myCalendar.get(Calendar.DAY_OF_WEEK));
                     }
                 });
 
@@ -470,7 +456,6 @@ public class AddCourseContent extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-//                Calendar mcurrentTime = Calendar.getInstance();
                         int hour = myCalendar.get(Calendar.HOUR_OF_DAY);
                         int minute = myCalendar.get(Calendar.MINUTE);
                         TimePickerDialog mTimePicker;
@@ -479,8 +464,7 @@ public class AddCourseContent extends AppCompatActivity {
                             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                                 time_of_exam.setText( selectedHour + ":" + selectedMinute);
                             }
-                        }, hour, minute, true);//Yes 24 hour time
-//                mTimePicker.setTitle("Select Time");
+                        }, hour, minute, true);
                         mTimePicker.show();
 
                     }
@@ -508,9 +492,6 @@ public class AddCourseContent extends AppCompatActivity {
                         else {
                             databaseReference = FirebaseDatabase.getInstance().getReference();
                             endsemester = new Endsemester(date,duration,time,description,venue);
-//                            String key=databaseReference.child("Courses").child(courseid).child("MidSemester").push().getKey();
-//                            databaseReference.child("Courses").child(courseid).child("MidSemester").setValue(midsemester);
-//                            databaseReference.child("Courses").child(CourseIDTextView.getText().toString()).setValue("");
                             endsem_btn.setText("End Semester added");
                             b.dismiss();
                         }
@@ -519,8 +500,6 @@ public class AddCourseContent extends AppCompatActivity {
 
             }
         });
-
-
 
 
         // adding data to firebase
@@ -540,36 +519,22 @@ public class AddCourseContent extends AppCompatActivity {
                 }
                 else
                 {
-//                    Toast.makeText(AddCourseContent.this,InDatabaseSlotsText,Toast.LENGTH_LONG).show();
-//                    Toast.makeText(AddCourseContent.this,midsemester.Description,Toast.LENGTH_LONG).show();
                     final Courses courses = new Courses(CourseIDTextView.getText().toString(),KeyTextView.getText().toString(),
                             DescriptionTextView.getText().toString(), Calendar.getInstance().getTime(),
                             CourseNameTextView.getText().toString(),MarksTextView.getText().toString()
                             ,UserInfo.username,SyllabusTextView.getText().toString(),InDatabaseSlotsText,midsemester,endsemester);
                     Log.d("fgf",midsemester.Description);
                     databaseReference = FirebaseDatabase.getInstance().getReference();
-//                    databaseReference.child("Courses").child(CourseIDTextView.getText().toString()).setValue("").addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if(task.isSuccessful())
-//                            {
                                 databaseReference.child("Courses").child(CourseIDTextView.getText().toString()).setValue(courses).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful())
                                         {
-//                                            databaseReference_users_add_course.child("users").child(UserInfo.username).child("courses").setValue(UserInfo.courses);
                                             databaseReference.child("Courses").child(CourseIDTextView.getText().toString()).child("MidSemester").setValue(midsemester);
                                             databaseReference.child("Courses").child(CourseIDTextView.getText().toString()).child("EndSemester").setValue(endsemester);
                                         }
                                     }
                                 });
-//                            }
-//                        }
-//                    });
-
-
-
                     // adding all the information in putExtra to show in course content page of prof where events and materials can also be added
                     //----------------------------------
                     Intent intent = new Intent(AddCourseContent.this, CourseMainPageStudent.class);
@@ -591,11 +556,6 @@ public class AddCourseContent extends AppCompatActivity {
         }
         );
         //-----------------------------------
-
-
-
-
-
     }
 
     @Override
@@ -612,51 +572,5 @@ public class AddCourseContent extends AppCompatActivity {
 
 
     }
-//
-//    private AlertDialog AskOption()
-//    {
-//        AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
-//                .setTitle("Exit")
-//                .setMessage("Are you sure you want to exit?")
-////                .setIcon(R.drawable.delete)
-//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int whichButton) {
-//                        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-//                        courseid = CourseIDTextView.getText().toString();
-//
-//                        final ArrayList<String> courses = new ArrayList<String>();
-//                        DatabaseReference databaseReference2 = databaseReference.child("users").child(UserInfo.username).child("courses");
-//                        databaseReference2.addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                    for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
-//                                        String course = messageSnapshot.getValue().toString();
-//                                        courses.add(course);
-////                                        Log.v("Title", course.getTitle());
-//                                    }
-//                                DatabaseReference databaseReferencecourse = databaseReference.child("Courses").child(courseid);
-//                                databaseReferencecourse.removeValue();
-//                                courses.remove(courses.size()-1);
-//                                databaseReference.child("users").child(UserInfo.username).child("courses").setValue(courses);
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                            }
-//                        });
-//
-//
-//                    }
-//                })
-//                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                    }
-//                })
-//                .create();
-//        return myQuittingDialogBox;
-//
-//    }
 
 }

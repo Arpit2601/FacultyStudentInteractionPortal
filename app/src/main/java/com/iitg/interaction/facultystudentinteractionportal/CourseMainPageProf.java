@@ -151,6 +151,7 @@ public class CourseMainPageProf extends Fragment {
                 startActivity(a);
             }
         });
+
          TextView textView = getView().findViewById(R.id.textView4);
         textView.setText(getActivity().getIntent().getStringExtra("CourseID"));
         TextView textView1 = getView().findViewById(R.id.textView7);
@@ -163,32 +164,26 @@ public class CourseMainPageProf extends Fragment {
         textView4.setText(getActivity().getIntent().getStringExtra("CourseMarks"));
         EditText textViewKey = getView().findViewById(R.id.textView25);
         textViewKey.setText(getActivity().getIntent().getStringExtra("CourseKey"));
-
         TextView textView5 = getView().findViewById(R.id.textView15);
         String[] timeslots = getActivity().getIntent().getStringExtra("CourseTimeSlots").split(",");
         textView5.append("Day   Time    Duration\n");
         for(int i=0;i<timeslots.length;i++)
         {
-//            long count=0;
             for(int j = 0; j < timeslots[i].length(); j++){
                 if (timeslots[i].charAt(j) == '-')
                 {
                     textView5.append("  ");
-
                 }
                 else
                 {
                     textView5.append(String.valueOf(timeslots[i].charAt(j)));
                 }
             }
-
-
             textView5.append("\n");
         }
 
         TextView textView6 = getView().findViewById(R.id.textView8);
         textView6.setText(getActivity().getIntent().getStringExtra("CourseDateOfCreation"));
-
 
 
         //------------------------------------------------------------------------------------
@@ -261,12 +256,10 @@ public class CourseMainPageProf extends Fragment {
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            // now we have  all the value that will be needed for
                             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                             StrictMode.setThreadPolicy(policy);
                             CourseMaterial item = customAdapter.getItem(position);
                             downloadFiles(getActivity(),item.getFileName(),DIRECTORY_DOWNLOADS,item.getURL());
-                            // now send the key with the intent you are showing
                         }
                     });
 
@@ -357,7 +350,6 @@ public class CourseMainPageProf extends Fragment {
         getView().findViewById(R.id.CourseProjects).setVisibility(View.GONE);
         count++;
         count1++;
-//        int count2=0;
         count2++;
         count3++;
         Button textView16 = getView().findViewById(R.id.textView16);
@@ -796,7 +788,6 @@ public class CourseMainPageProf extends Fragment {
         LayoutInflater inflater = getLayoutInflater();
         dialogViewFile = inflater.inflate(R.layout.add_file_dialog_box, null);
         dialogBuilder.setView(dialogViewFile);
-        dialogBuilder.setTitle("Doraemon");
         mate = dialogBuilder.create();
         mate.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         mate.show();

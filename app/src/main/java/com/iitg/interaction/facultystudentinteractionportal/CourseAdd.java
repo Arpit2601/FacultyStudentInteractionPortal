@@ -27,7 +27,6 @@ public class CourseAdd extends AppCompatActivity {
     public static final String TAG = "CourseAdd";
     private DatabaseReference databaseReference;
     public String course_id;
-    public int flag = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +34,6 @@ public class CourseAdd extends AppCompatActivity {
         setContentView(R.layout.activity_course_add);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
 
         // main work starts here
         // first check the courseid enterred y the prof if it exists prompt him to add new one
@@ -58,7 +47,6 @@ public class CourseAdd extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 button.setEnabled(false);
-                flag=0;
                 EditText courseID = findViewById(R.id.CourseID);
                 course_id = courseID.getText().toString();
                 if (course_id.equals("")){
@@ -70,30 +58,19 @@ public class CourseAdd extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists())
                         {
-//                            courseID.setText("");
-                            if (flag == 0) {
-                                Log.d(TAG, course_id);
-                                Toast.makeText(CourseAdd.this, "This course ID already exists. Please enter new ID.", Toast.LENGTH_SHORT).show();
-                                button.setEnabled(true);
-                            }
+                            Log.d(TAG, course_id);
+                            Toast.makeText(CourseAdd.this, "This course ID already exists. Please enter new ID.", Toast.LENGTH_SHORT).show();
+                            button.setEnabled(true);
+
                         }
                         else
                         {
-
-                            // the below method shows how will you insert a child ina json tree , here you are inserting a child named  course id with the the keys set to null
-
-                            // String key = databaseReference.child("Courses").push().getKey();
-
-
-//                            databaseReference.child("Courses").child(course_id).setValue("");
 
                             Log.d(TAG,course_id);
                             Intent intent = new Intent(CourseAdd.this, AddCourseContent.class);
                             intent.putExtra("CourseID",course_id);
                             finish();
                             startActivity(intent);
-                            flag = 1;
-
 
                         }
 
@@ -109,8 +86,6 @@ public class CourseAdd extends AppCompatActivity {
             }
         });
 
-//        String key=databaseReference.push().getKey();
-//        databaseReference.child("Courses").child(key).setValue("courses");
     }
 
 
